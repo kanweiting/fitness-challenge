@@ -270,7 +270,8 @@ function render() {
   $("goal").placeholder = `建議 ${f1(d.benchKg)}`;
   $("goalHint").innerHTML = `建議${verb} ${f1(d.benchKg)} kg｜健康區間 ${f1(d.floorKg)}–${f1(d.capKg)} kg（最低 ${f1(d.floorKg)} kg）` +
     (d.belowFloor ? `　<span class="est">低於下限，會以 ${f1(d.floorKg)} kg 計算</span>` : "") +
-    (d.aboveCap ? `　<span class="est">超過健康區間，容易傷身，也比較難達到 80%</span>` : "");
+    (d.aboveCap ? `　<span class="est">超過健康區間，容易傷身，也比較難達到 80%</span>` : "") +
+    `<br>👉 也就是 ${f1(d.w)} → <b style="color:var(--text)">${f1(d.targetW)} kg</b>（${verb}到 ${f1(d.keepW)} kg 就能守住 500 元）`;
 
   box.innerHTML = "";
 
