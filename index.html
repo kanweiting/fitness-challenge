@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>兄弟 8 週減脂挑戰｜報名表</title>
+<style>
+  :root {
+    --bg: #f5f6f8; --card: #fff; --text: #1d2330; --muted: #6b7385;
+    --primary: #2f6fed; --cut: #e8590c; --gain: #2b8a3e; --line: #e3e6ec;
+    --private: #fff7e6; --public: #eaf2ff; --danger: #d6336c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: -apple-system, "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.55;
+  }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 20px 16px 60px; }
+  header h1 { font-size: 1.45rem; margin: 8px 0 4px; }
+  header p { color: var(--muted); margin: 0 0 16px; font-size: .92rem; }
+  .card { background: var(--card); border-radius: 14px; padding: 18px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+  .card h2 { font-size: 1.05rem; margin: 0 0 12px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .full { grid-column: 1 / -1; }
+  label { display: block; font-size: .85rem; color: var(--muted); margin-bottom: 4px; }
+  label .req { color: var(--danger); }
+  label .opt { color: var(--primary); font-size: .75rem; }
+  input[type=number], input[type=text] {
+    width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; font-size: 1rem; background: #fff;
+  }
+  input:focus { outline: 2px solid var(--primary); border-color: transparent; }
+  .seg { display: flex; gap: 8px; flex-wrap: wrap; }
+  .seg label {
+    flex: 1 1 0; min-width: 0; margin: 0; padding: 10px 6px; text-align: center; border: 1px solid var(--line); border-radius: 10px;
+    cursor: pointer; color: var(--text); font-size: .9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .seg label small { display: block; color: var(--muted); font-size: .75rem; overflow: hidden; text-overflow: ellipsis; }
+  .seg input { display: none; }
+  .seg input:checked + span { font-weight: 700; }
+  .seg label:has(input:checked) { border-color: var(--primary); background: var(--public); }
+  .hint { font-size: .8rem; color: var(--muted); margin-top: 6px; }
+  .field-hint { font-size: .75rem; color: var(--muted); margin-top: 4px; min-height: 1em; }
+  .field-hint.warn { color: var(--danger); }
+  .why { background: var(--bg); border-radius: 10px; padding: 10px 12px; margin-top: 14px; font-size: .82rem; color: var(--muted); }
+  .why b { color: var(--text); }
+  .why ul { margin: 4px 0 0; padding-left: 18px; }
+  .result-box { border-radius: 12px; padding: 14px; margin-top: 12px; }
+  .result-box.private { background: var(--private); }
+  .result-box.public { background: var(--public); }
+  .result-box h3 { margin: 0 0 8px; font-size: .95rem; }
+  .row { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-bottom: 1px dashed var(--line); font-size: .92rem; }
+  .row:last-child { border-bottom: 0; }
+  .row span:first-child { color: var(--muted); white-space: nowrap; }
+  .row span:last-child { font-weight: 600; text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 999px; color: #fff; font-size: .8rem; }
+  .badge.cut { background: var(--cut); } .badge.gain { background: var(--gain); }
+  .est { color: var(--danger); font-size: .78rem; font-weight: 400; }
+  .empty { color: var(--muted); font-size: .9rem; text-align: center; padding: 20px 0; }
+  button {
+    width: 100%; padding: 14px; border: 0; border-radius: 12px; background: var(--primary); color: #fff; font-size: 1rem; font-weight: 700; cursor: pointer;
+  }
+  button:disabled { background: #a9b4c8; cursor: not-allowed; }
+  .msg { margin-top: 10px; font-size: .88rem; text-align: center; }
+  .rules { font-size: .88rem; color: var(--muted); padding-left: 18px; margin: 0; }
+  .rules li { margin-bottom: 4px; }
+  @media (max-width: 420px) { .grid { grid-template-columns: 1fr; } .seg label { font-size: .82rem; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>🏋️ 兄弟 8 週減脂挑戰</h1>
+    <p>填完下面的資料，就會自動算出建議目標。<b>目標（要減或增幾 kg）會公開給大家</b>；目前的體重、體脂、腰圍只有你自己和 <b>偉廷</b> 看得到。</p>
+  </header>
+
+  <form id="form" class="card" autocomplete="off">
+    <h2>① 基本資料</h2>
+    <div class="grid">
+      <div class="full">
+        <label for="name">名字 <span class="req">*</span></label>
+        <input type="text" id="name" maxlength="20" required>
+      </div>
+      <div>
+        <label for="height">身高 (cm) <span class="req">*</span></label>
+        <input type="number" id="height" min="140" max="210" step="0.1" inputmode="decimal" placeholder="例：176.5" required>
+        <div class="field-hint" data-for="height">填到小數點後 1 位</div>
+      </div>
+      <div>
+        <label for="weight">目前體重 (kg) <span class="req">*</span></label>
+        <input type="number" id="weight" min="40" max="200" step="0.1" inputmode="decimal" placeholder="例：88.4" required>
+        <div class="field-hint" data-for="weight">填到小數點後 1 位</div>
+      </div>
+      <div>
+        <label for="age">年齡 <span class="req">*</span></label>
+        <input type="number" id="age" min="18" max="80" step="1" inputmode="numeric" required>
+      </div>
+      <div>
+        <label for="bf">目前體脂 (%) <span class="opt">選填・建議填</span></label>
+        <input type="number" id="bf" min="3" max="60" step="0.1" inputmode="decimal" placeholder="例：27.3">
+        <div class="field-hint" data-for="bf">填到小數點後 1 位</div>
+      </div>
+      <div>
+        <label for="waist">腰圍 (cm) <span class="opt">選填・建議填</span></label>
+        <input type="number" id="waist" min="50" max="160" step="0.1" inputmode="decimal" placeholder="例：92.0">
+        <div class="field-hint" data-for="waist">量肚臍那一圈，填到小數點後 1 位</div>
+      </div>
+    </div>
+    <div class="why">
+      <b>為什麼需要這些數據？</b>
+      <ul>
+        <li><b>身高、體重</b>：算 BMI，決定賽道和建議目標；體重也是計分項目之一（佔 50%）</li>
+        <li><b>年齡</b>：沒填體脂時，用來估算體脂</li>
+        <li><b>體脂</b>：起始值，計分項目之一（佔 50%）；不填的話只能用公式估算，會不準</li>
+        <li><b>腰圍</b>：比體脂計穩定，用來輔助確認進度</li>
+      </ul>
+      小數點後 1 位的差別，就會影響最後的排名，所以請照體重計上的數字完整填寫。
+    </div>
+
+    <h2 style="margin-top:18px">② 目標體態 <span class="req">*</span></h2>
+    <div class="seg" id="physique">
+      <label><input type="radio" name="physique" value="health"><span>維持健康<small>體脂 15–20%</small></span></label>
+      <label><input type="radio" name="physique" value="lean"><span>精實<small>體脂 12–15%</small></span></label>
+      <label><input type="radio" name="physique" value="defined"><span>明顯線條<small>體脂 10–12%</small></span></label>
+    </div>
+
+    <h2 style="margin-top:18px">③ 賽道</h2>
+    <div class="seg" id="track">
+      <label><input type="radio" name="track" value="auto" checked><span>自動建議</span></label>
+      <label><input type="radio" name="track" value="cut"><span>減脂組</span></label>
+      <label><input type="radio" name="track" value="gain"><span>增肌組</span></label>
+    </div>
+    <div class="hint" id="trackHint">依 BMI 與體脂自動判斷，也可以手動選。</div>
+
+    <h2 style="margin-top:18px">④ 我的 8 週體重目標</h2>
+    <label for="goal" id="goalLabel">想減幾 kg（留空就用建議值）</label>
+    <input type="number" id="goal" min="0" max="20" step="0.1" inputmode="decimal">
+    <div class="hint" id="goalHint">填完基本資料後會顯示建議值</div>
+  </form>
+
+  <section class="card">
+    <h2>⑤ 我的目標（8 週）</h2>
+    <div id="result"><div class="empty">填完必填欄位後就會顯示</div></div>
+  </section>
+
+  <section class="card">
+    <h2>📏 計分方式</h2>
+    <ul class="rules">
+      <li><b>總分 = 體重分 × 50% + 體脂分 × 50%</b>，總分最高的人拿第一</li>
+      <li>體重分：減脂組 = 體重減少 %；增肌組 = 體重增加 %</li>
+      <li>體脂分（所有人相同）= 體脂相對減少 %，例如 28% → 25% 是 (28 − 25) ÷ 28 = 10.7 分；體脂上升會扣分</li>
+      <li>個人目標達成率 = 實際體重變化 kg ÷ 目標 kg（四捨五入到小數點後一位）。<b>≥ 80.0% 才能保留 500 元，也才有資格拿第一</b>；第一名沒達標就順延給下一位</li>
+      <li>目標的健康區間：減脂組是體重的 4–8%，增肌組是 2–4%（頁面會換算成 kg）；低於下限會自動拉到下限</li>
+      <li>Day 1 與最後一天都用 <b>偉廷</b> 的體重計：早上起床、上完廁所、吃喝之前量，穿同樣的衣服，體重與體脂各量 3 次取平均</li>
+    </ul>
+  </section>
+
+  <button id="submit" disabled>送出給偉廷</button>
+  <div class="msg" id="msg"></div>
+</div>
+
+<script>
+// 部署 apps-script.gs 後，把 Web App 網址貼在這裡；留空就改成「複製文字」模式
+const SCRIPT_URL = "";
+
+const PHYSIQUE = {
+  health:  { label: "維持健康", bfRange: [15, 20], cutBonus: 0,   bfBonus: 0,    gainPct: 2.5 },
+  lean:    { label: "精實",     bfRange: [12, 15], cutBonus: 0.5, bfBonus: 0.25, gainPct: 3 },
+  defined: { label: "明顯線條", bfRange: [10, 12], cutBonus: 1,   bfBonus: 0.5,  gainPct: 3 }
+};
+const GAIN_BF_CAP = 0.5;
+
+const $ = id => document.getElementById(id);
+const num = id => { const v = parseFloat($(id).value); return Number.isFinite(v) ? v : null; };
+const radio = name => (document.querySelector(`input[name=${name}]:checked`) || {}).value || null;
+const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+const f1 = v => v.toFixed(1);
+
+function compute() {
+  const name = $("name").value.trim();
+  const h = num("height"), w = num("weight"), age = num("age");
+  const physique = radio("physique");
+  if (!name || !h || !w || !age || !physique) return null;
+
+  const bmi = w / Math.pow(h / 100, 2);
+  const bfInput = num("bf");
+  // 沒填體脂時用 Deurenberg 公式（男性）估算，只作參考
+  const bf = bfInput ?? (1.2 * bmi + 0.23 * age - 16.2);
+  const bfEstimated = bfInput == null;
+
+  const autoTrack = (bf < 15 || bmi < 21) ? "gain" : "cut";
+  const trackSel = radio("track");
+  const track = trackSel === "auto" ? autoTrack : trackSel;
+  const p = PHYSIQUE[physique];
+
+  let wPct, bfDelta;
+  if (track === "cut") {
+    const base = bmi >= 30 ? 7 : bmi >= 27 ? 6 : bmi >= 24 ? 5 : 4;
+    wPct = -clamp(base + p.cutBonus, 4, 8);
+    const bfBase = bf >= 30 ? 4 : bf >= 25 ? 3.5 : bf >= 20 ? 3 : 2;
+    bfDelta = -clamp(bfBase + p.bfBonus, 2, 4.5);
+  } else {
+    wPct = p.gainPct;
+    bfDelta = GAIN_BF_CAP;
+  }
+
+  // 健康區間：減脂組每週約 0.5–1%，增肌組每週約 0.25–0.5%；換算成 kg。超過上限只提醒、不強制
+  const r1 = v => Math.round(v * 10) / 10;
+  const floorKg = r1(w * (track === "cut" ? 4 : 2) / 100);
+  const capKg = r1(w * (track === "cut" ? 8 : 4) / 100);
+  const benchKg = r1(w * Math.abs(wPct) / 100);
+  const goalIn = num("goal");
+  const belowFloor = goalIn != null && Math.abs(goalIn) < floorKg;
+  const aboveCap = goalIn != null && Math.abs(goalIn) > capKg;
+  const goalAbs = goalIn == null ? benchKg : Math.max(r1(Math.abs(goalIn)), floorKg);
+  const goalKg = track === "cut" ? -goalAbs : goalAbs;
+  const keepKg = r1(goalKg * 0.8);
+
+  const targetW = w + goalKg;
+  const keepW = w + keepKg;
+  const targetBf = bf + bfDelta;
+  // 長期參考：維持目前去脂體重，達到目標體態體脂區間時的體重
+  const ffm = w * (1 - bf / 100);
+  const longTerm = p.bfRange.map(r => ffm / (1 - r / 100));
+
+  return {
+    name, h, w, age, bmi, bf, bfEstimated, waist: num("waist"),
+    physique, physiqueLabel: p.label, track, autoTrack, trackSel,
+    wPct, bfDelta, floorKg, capKg, benchKg, belowFloor, aboveCap, goalKg, keepKg,
+    targetW, keepW, targetBf, longTerm, bfRange: p.bfRange,
+    weeklyKg: goalAbs / 8
+  };
+}
+
+function row(k, v) {
+  const r = document.createElement("div"); r.className = "row";
+  const a = document.createElement("span"); a.textContent = k;
+  const b = document.createElement("span"); b.innerHTML = v; // v 只含程式產生的數字與固定標籤
+  r.append(a, b); return r;
+}
+
+// 提醒填到小數點後 1 位（不擋送出）
+function checkDecimals() {
+  document.querySelectorAll(".field-hint[data-for]").forEach(el => {
+    const raw = $(el.dataset.for).value.trim();
+    const bad = raw !== "" && !/^\d+\.\d$/.test(raw);
+    el.classList.toggle("warn", bad);
+    if (bad) el.textContent = `請填到小數點後 1 位，例如 ${(parseFloat(raw) || 0).toFixed(1)}`;
+    else el.textContent = el.dataset.for === "waist" ? "量肚臍那一圈，填到小數點後 1 位" : "填到小數點後 1 位";
+  });
+}
+
+function render() {
+  checkDecimals();
+  const d = compute();
+  const box = $("result");
+  $("submit").disabled = !d;
+  if (!d) { box.innerHTML = '<div class="empty">填完必填欄位後就會顯示</div>'; return; }
+
+  const trackLabel = d.track === "cut" ? "減脂組" : "增肌組";
+  const badge = `<span class="badge ${d.track}">${trackLabel}</span>`;
+  const est = d.bfEstimated ? ' <span class="est">（估算值，Day 1 實測後更新）</span>' : "";
+  const sign = v => (v > 0 ? "+" : "") + f1(v);
+
+  $("trackHint").textContent = d.trackSel === "auto"
+    ? `依你的數據建議：${d.autoTrack === "cut" ? "減脂組" : "增肌組"}（也可以手動改）`
+    : (d.trackSel !== d.autoTrack ? `提醒：依數據原本建議的是${d.autoTrack === "cut" ? "減脂組" : "增肌組"}` : "已手動選擇");
+
+  const verb = d.track === "cut" ? "減" : "增";
+  $("goalLabel").textContent = `想${verb}幾 kg（留空就用建議值）`;
+  $("goal").placeholder = `建議 ${f1(d.benchKg)}`;
+  $("goalHint").innerHTML = `建議${verb} ${f1(d.benchKg)} kg｜健康區間 ${f1(d.floorKg)}–${f1(d.capKg)} kg（最低 ${f1(d.floorKg)} kg）` +
+    (d.belowFloor ? `　<span class="est">低於下限，會以 ${f1(d.floorKg)} kg 計算</span>` : "") +
+    (d.aboveCap ? `　<span class="est">超過健康區間，容易傷身，也比較難達到 80%</span>` : "");
+
+  box.innerHTML = "";
+
+  const pub = document.createElement("div"); pub.className = "result-box public";
+  pub.innerHTML = "<h3>📢 會公開給大家</h3>";
+  const nameRow = row("名字", ""); nameRow.lastChild.textContent = d.name;
+  pub.append(
+    nameRow,
+    row("賽道", badge),
+    row("目標體態", `${d.physiqueLabel}（體脂 ${d.bfRange[0]}–${d.bfRange[1]}%）`),
+    row("8 週目標", `<b>${verb} ${f1(Math.abs(d.goalKg))} kg</b>`),
+    row("守住 500 元（80%）", `至少${verb} ${f1(Math.abs(d.keepKg))} kg`)
+  );
+
+  const priv = document.createElement("div"); priv.className = "result-box private";
+  priv.innerHTML = "<h3>🔒 只有你和 <b>偉廷</b> 看得到</h3>";
+  priv.append(
+    row("BMI", f1(d.bmi)),
+    row("目前體脂", f1(d.bf) + "%" + est),
+    row("目標體重", `${f1(d.w)} → <b>${f1(d.targetW)}</b> kg`),
+    row("守住 500 元的體重", `${d.track === "cut" ? "≤" : "≥"} <b>${f1(d.keepW)}</b> kg`),
+    row("平均每週", `${verb} ${f1(d.weeklyKg)} kg`),
+    row("體脂參考目標", `${f1(d.bf)} → ${f1(d.targetBf)}%` + (d.track === "gain" ? "（上限）" : "") + ' <span class="est" style="color:var(--muted)">只作參考</span>'),
+    row(`長期參考（${d.physiqueLabel}）`, `約 ${f1(d.longTerm[1])}–${f1(d.longTerm[0])} kg`)
+  );
+
+  box.append(pub, priv);
+  if (d.track === "cut" && d.bf >= 25) {
+    const n = document.createElement("div"); n.className = "hint";
+    n.textContent = "💡 8 週目標是第一階段，長期體態目標可以在比賽結束後繼續挑戰。";
+    box.append(n);
+  }
+}
+
+async function submit() {
+  const d = compute(); if (!d) return;
+  const payload = {
+    name: d.name, height: d.h, weight: d.w, age: d.age, bf: d.bfEstimated ? "" : d.bf,
+    bfEstimated: d.bfEstimated, waist: d.waist ?? "", physique: d.physiqueLabel,
+    track: d.track === "cut" ? "減脂組" : "增肌組",
+    goalKg: +d.goalKg.toFixed(1), keepKg: +d.keepKg.toFixed(1), benchmarkKg: +(d.track === "cut" ? -d.benchKg : d.benchKg).toFixed(1),
+    targetWeight: +d.targetW.toFixed(1), keepWeight: +d.keepW.toFixed(1), bfRef: +d.targetBf.toFixed(1)
+  };
+  const msg = $("msg"); const btn = $("submit");
+  const sg = v => (v > 0 ? "+" : "") + v;
+
+  if (!SCRIPT_URL) {
+    const text = [
+      `【8 週挑戰報名】${payload.name}`,
+      `身高 ${payload.height} cm／體重 ${payload.weight} kg／年齡 ${payload.age}`,
+      `體脂 ${d.bfEstimated ? "未填" : payload.bf + "%"}／腰圍 ${payload.waist || "未填"}`,
+      `體態：${payload.physique}／賽道：${payload.track}`,
+      `8 週目標：${sg(payload.goalKg)} kg（目標體重 ${payload.targetWeight} kg；建議值 ${sg(payload.benchmarkKg)} kg）`,
+      `守住 500 元：${sg(payload.keepKg)} kg（${payload.keepWeight} kg）／體脂參考：${payload.bfRef}%`
+    ].join("\n");
+    try { await navigator.clipboard.writeText(text); msg.textContent = "✅ 已複製，請私訊貼給偉廷"; }
+    catch { msg.textContent = "請手動複製以下內容私訊偉廷：\n" + text; msg.style.whiteSpace = "pre-wrap"; }
+    return;
+  }
+
+  btn.disabled = true; msg.textContent = "送出中…";
+  try {
+    await fetch(SCRIPT_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain" }, body: JSON.stringify(payload) });
+    msg.textContent = "✅ 已送出！目標已鎖定";
+  } catch (e) {
+    msg.textContent = "❌ 送出失敗，請稍後再試或直接私訊偉廷"; btn.disabled = false;
+  }
+}
+
+$("form").addEventListener("input", render);
+$("form").addEventListener("change", render);
+$("submit").addEventListener("click", submit);
+render();
+</script>
+</body>
+</html>
